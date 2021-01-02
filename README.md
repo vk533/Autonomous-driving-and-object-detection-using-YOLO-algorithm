@@ -58,3 +58,14 @@ The model gives us a total of 19x19x5x85 numbers, with each box described by 85 
 
 - ` box_class_probs `: tensor of shape  (19×19,5,80)  containing the "class probabilities"  (c1,c2,...c80)  for each of the 80 classes for each of the 5 boxes per cell.
 
+### Summary for YOLO
+- Input image (608, 608, 3)
+- The input image goes through a CNN, resulting in a (19,19,5,85) dimensional output.
+- After flattening the last two dimensions, the output is a volume of shape (19, 19, 425):
+1. Each cell in a 19x19 grid over the input image gives 425 numbers.
+2. 425 = 5 x 85 because each cell contains predictions for 5 boxes, corresponding to 5 anchor boxes, as seen in lecture.
+3. 85 = 5 + 80 where 5 is because $(p_c, b_x, b_y, b_h, b_w)$ has 5 numbers, and 80 is the number of classes we'd like to detect
+- You then select only few boxes based on:
+1. Score-thresholding: throw away boxes that have detected a class with a score less than the threshold
+2. Non-max suppression: Compute the Intersection over Union and avoid selecting overlapping boxes
+- This gives you YOLO's final output.
