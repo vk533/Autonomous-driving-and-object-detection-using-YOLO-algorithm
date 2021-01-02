@@ -40,7 +40,7 @@ Doing this results in the picture below
 
 ![Image](ImagesYOLO/Picture4.png)
 
-In the figure above, we plotted only boxes for which the model had assigned a high probability, but this is still too many boxes. You'd like to reduce the algorithm's output to a much smaller number of detected objects.
+In the figure above, we plotted only boxes for which the model had assigned a high probability, but this is still too many boxes. We'd like to reduce the algorithm's output to a much smaller number of detected objects.
 
 To do so, we'll use non-max suppression. Specifically, we'll carry out these steps:
 
